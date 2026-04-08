@@ -6,8 +6,7 @@
 
 3. Perintah delay(timeDelay) berfungsi untuk memberikan jeda waktu dalam milidetik pada saat LED menyala maupun mati. Nilai delay ini menentukan kecepatan kedip LED, dimana semakin kecil nilainya maka LED akan berkedip semakin cepat. Hal ini sesuai dengan konsep pengaturan waktu pada mikrokontroler [2].
 
-4. 
-const int ledPin = 6; 
+4. const int ledPin = 6;
 // Menentukan pin LED pada pin digital 6
 
 int timeDelay = 100; 
@@ -106,6 +105,6 @@ void loop() {
     // Mematikan LED kiri
   }
 
-  delay(500); 
-  // Jeda sebelum kembali ke awal loop
+   delay(500); 
+  // Jeda sebelum kembali ke awal loop 
 }
