@@ -18,11 +18,11 @@ Modifikasi ini menyebabkan nilai ADC dari potensiometer tetap berada pada rentan
 ![alt text](https://github.com/razdient/H1H024053_Praktikum-Sistem-Mikrokontroler/blob/main/Pertemuan%204/Skema%20Percobaan%202.png?raw=true)
 1. LED dapat diatur kecerahannya menggunakan fungsi analogWrite() karena fungsi ini menghasilkan sinyal PWM (Pulse Width Modulation), yaitu sinyal digital yang dimodulasi lebar pulsa (duty cycle)-nya sehingga menyerupai sinyal analog. Pada PWM, meskipun tegangan yang diberikan tetap 0V atau 5V, lama waktu sinyal berada pada kondisi HIGH dalam satu periode dapat diatur. Semakin besar duty cycle, semakin lama LED dalam kondisi menyala, sehingga LED tampak lebih terang. Sebaliknya, jika duty cycle kecil, LED tampak redup. Hal ini sesuai dengan konsep PWM yang digunakan untuk mengontrol daya rata-rata yang diberikan ke beban seperti LED tanpa perlu menggunakan tegangan analog sebenarnya
 2. Nilai ADC (0–1023) merupakan hasil pembacaan sinyal analog dari potensiometer dengan resolusi 10-bit, sedangkan nilai PWM (0–255) merupakan nilai output dengan resolusi 8-bit yang digunakan oleh fungsi analogWrite(). Hubungan antara keduanya adalah proses penskalaan (scaling), di mana nilai ADC dikonversi menjadi nilai PWM menggunakan fungsi map(). Secara matematis, nilai ADC dibagi sekitar 4 untuk mendapatkan nilai PWM (karena 1023 ≈ 4 × 255).
+Proses ini memastikan bahwa perubahan pada potensiometer menghasilkan perubahan kecerahan LED secara proporsional, sesuai dengan konsep konversi data dalam sistem mikrokontroler.
 | Nilai ADC | PWM   | Kondisi LED |
 | :-: | :-: | :-: |
 | Kecil | Kecil | Redup |
 | Besar | Besar | Terang |
-Proses ini memastikan bahwa perubahan pada potensiometer menghasilkan perubahan kecerahan LED secara proporsional, sesuai dengan konsep konversi data dalam sistem mikrokontroler.
 4.
 ```cpp
 if (pwm >= 50 && pwm <= 200) {
