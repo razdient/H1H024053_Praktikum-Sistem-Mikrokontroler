@@ -21,11 +21,13 @@ Modifikasi ini menyebabkan nilai ADC dari potensiometer tetap berada pada rentan
 | Kecil | Kecil | Redup |
 | Besar | Besar | Terang |
 Proses ini memastikan bahwa perubahan pada potensiometer menghasilkan perubahan kecerahan LED secara proporsional, sesuai dengan konsep konversi data dalam sistem mikrokontroler.
-3. ``` ino if (pwm >= 50 && pwm <= 200) {
+3.```cpp
+if (pwm >= 50 && pwm <= 200) {
   analogWrite(ledPin, pwm);
 } else {
   analogWrite(ledPin, 0);
-} ```
+}
+```
 Kode ini diletakkan pada bagian output PWM, tepatnya menggantikan baris analogWrite(ledPin, pwm); yang sebelumnya langsung mengirim nilai PWM ke LED.
 
 Penambahan kondisi ini bertujuan untuk melakukan seleksi terhadap nilai PWM. Jika nilai PWM berada dalam rentang 50 hingga 200, maka LED akan menyala dengan tingkat kecerahan sesuai nilai tersebut. Namun, jika nilai PWM berada di bawah 50 atau di atas 200, maka LED akan dimatikan dengan memberikan nilai 0.
