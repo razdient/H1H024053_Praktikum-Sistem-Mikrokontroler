@@ -6,7 +6,7 @@
 1. Perintah analogRead() berfungsi untuk membaca sinyal analog berupa tegangan dari potensiometer yang kemudian dikonversi menjadi data digital oleh ADC (Analog to Digital Converter) pada Arduino Uno. Nilai yang dihasilkan berada pada rentang 0 hingga 1023, yang menunjukkan representasi digital dari tegangan 0V hingga 5V. Dalam praktikum ini, nilai tersebut digunakan sebagai input utama untuk mengontrol sudut servo. Perubahan posisi potensiometer akan mengubah nilai tegangan yang dibaca, sehingga menghasilkan nilai ADC yang berbeda. Hal ini sesuai dengan konsep dasar ADC, di mana sinyal analog harus dikonversi menjadi bentuk digital agar dapat diproses oleh mikrokontroler
 2. Fungsi map() diperlukan untuk mengubah rentang nilai input menjadi rentang nilai output yang sesuai dengan kebutuhan sistem. Pada praktikum ini, nilai dari analogRead() berada pada rentang 0–1023, sedangkan servo hanya dapat menerima perintah sudut dalam rentang 0–180 derajat. Tanpa proses konversi menggunakan map(), nilai yang dikirim ke servo tidak akan sesuai, sehingga dapat menyebabkan pergerakan yang tidak akurat atau bahkan tidak berfungsi dengan baik. Dengan menggunakan map(), nilai ADC dapat diskalakan secara proporsional menjadi sudut servo, sehingga pergerakan servo menjadi linear dan sesuai dengan putaran potensiometer. Hal ini sejalan dengan konsep pengolahan sinyal dalam sistem mikrokontroler, di mana data input sering kali perlu disesuaikan dengan karakteristik perangkat output agar sistem dapat bekerja secara optimal
 3. Untuk membatasi pergerakan servo, dilakukan modifikasi pada fungsi map() dengan mengubah rentang output dari 0–180 menjadi 30–150 derajat. 
-'''pos = map(val, 0, 1023, 30, 150);'''
+```pos = map(val, 0, 1023, 30, 150);```
 Modifikasi ini menyebabkan nilai ADC dari potensiometer tetap berada pada rentang 0–1023, namun hasil konversinya hanya menghasilkan sudut antara 30° hingga 150°. Dengan demikian, servo tidak akan bergerak ke posisi ekstrem (0° dan 180°). Pembatasan ini penting karena pada beberapa kondisi, pergerakan ekstrem dapat menyebabkan servo menjadi tidak stabil atau berpotensi merusak komponen mekaniknya. Selain itu, pembatasan sudut juga dapat meningkatkan presisi kontrol pada rentang tertentu yang lebih dibutuhkan. Konsep ini sesuai dengan prinsip pengendalian aktuator, di mana batas operasi sering diterapkan untuk menjaga kestabilan dan keandalan sistem
 
 ## Percobaan 2 : Pulse Width Modulation
@@ -21,11 +21,11 @@ Modifikasi ini menyebabkan nilai ADC dari potensiometer tetap berada pada rentan
 | Kecil | Kecil | Redup |
 | Besar | Besar | Terang |
 Proses ini memastikan bahwa perubahan pada potensiometer menghasilkan perubahan kecerahan LED secara proporsional, sesuai dengan konsep konversi data dalam sistem mikrokontroler.
-3. '''if (pwm >= 50 && pwm <= 200) {
+3. ```if (pwm >= 50 && pwm <= 200) {
   analogWrite(ledPin, pwm);
 } else {
   analogWrite(ledPin, 0);
-}'''
+}```
 Kode ini diletakkan pada bagian output PWM, tepatnya menggantikan baris analogWrite(ledPin, pwm); yang sebelumnya langsung mengirim nilai PWM ke LED.
 
 Penambahan kondisi ini bertujuan untuk melakukan seleksi terhadap nilai PWM. Jika nilai PWM berada dalam rentang 50 hingga 200, maka LED akan menyala dengan tingkat kecerahan sesuai nilai tersebut. Namun, jika nilai PWM berada di bawah 50 atau di atas 200, maka LED akan dimatikan dengan memberikan nilai 0.
