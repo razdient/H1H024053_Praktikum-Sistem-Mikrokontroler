@@ -20,8 +20,8 @@ Modifikasi ini menyebabkan nilai ADC dari potensiometer tetap berada pada rentan
 2. Nilai ADC (0–1023) merupakan hasil pembacaan sinyal analog dari potensiometer dengan resolusi 10-bit, sedangkan nilai PWM (0–255) merupakan nilai output dengan resolusi 8-bit yang digunakan oleh fungsi analogWrite(). Hubungan antara keduanya adalah proses penskalaan (scaling), di mana nilai ADC dikonversi menjadi nilai PWM menggunakan fungsi map(). Secara matematis, nilai ADC dibagi sekitar 4 untuk mendapatkan nilai PWM (karena 1023 ≈ 4 × 255).
 | Nilai ADC | PWM   | Kondisi LED |
 | :-: | :-: | :-: |
-| Kecil     | Kecil | Redup       |
-| Besar     | Besar | Terang      |
+| Kecil | Kecil | Redup |
+| Besar | Besar | Terang |
 Proses ini memastikan bahwa perubahan pada potensiometer menghasilkan perubahan kecerahan LED secara proporsional, sesuai dengan konsep konversi data dalam sistem mikrokontroler.
 4.
 ```cpp
